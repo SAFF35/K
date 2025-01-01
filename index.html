@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART AFFILIATE INDONESIA</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #E0FFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+    }
+
+    h2 {
+      margin-top: 20px;
+      font-size: 2em;
+      color: #000;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .container {
+      width: 80%;
+      background-color: #00BFFF;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 40%;
+      padding: 12px;
+      font-size: 1em;
+      border: 2px solid #000;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 1em;
+      font-weight: bold;
+      color: #FFF;
+      background-color: #0000FF;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    button:hover {
+      background-color: #3333FF;
+    }
+
+    .result-container {
+      display: none;
+      width: 80%;
+      background-color: #7FFFDA;
+      color: #000;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      margin-top: 20px;
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    .not-found {
+      text-align: center;
+      color: #000;
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    .button {
+      padding: 12px 30px;
+      font-size: 1em;
+      color: #FFF;
+      background-color: #008CBA;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 10px 0;
+      display: inline-block;
+    }
+
+    .button:hover {
+      background-color: #005F6A;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .center-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1em;
+      margin-top: 20px;
+    }
+
+    td {
+      padding: 5px 10px;
+      vertical-align: top;
+    }
+
+    td:first-child {
+      text-align: left;
+      font-weight: bold;
+      width: 40%;
+    }
+  </style>
+</head>
+<body>
+  <h2>SMART AFFILIATE INDONESIA</h2>
+
+  <div id="result-container" class="result-container"></div>
+
+  <div class="container">
+    <p><b>Lihat KOMISI, BONUS dll Ketik Kode ID dan Password Anda pada kolom di bawah ini lalu Klik Tombol "LIHAT"</b></p>
+    <div class="form-group">
+      <input type="text" id="kodeId" placeholder="Masukkan Kode ID">
+      <input type="text" id="password" placeholder="Masukkan Password">
+    </div>
+    <button id="lihatButton" onclick="cariData()">LIHAT</button>
+  </div>
+
+  <script>
+    const dataAnggota = {
+      "HYT001": {
+        "Kode ID": "HYT001",
+        "Password": "sukses001",
+        "Tgl Bergabung": "45629",
+        "Nama": "Hayat",
+        "Sponsor": "AFS",
+        "WA Sponsor": "089522704503",
+        "Poin Awal": "0",
+        "Mitra G1": "1",
+        "Poin G1": "10",
+        "Komisi G1": "10000",
+        "Mitra G2-10": "9",
+        "Poin G2": "90",
+        "Komisi G2-10": "9000",
+        "Jumlah K": "19000",
+        "B Spesial 1": "0",
+        "B Spesial 2": "0",
+        "B Spesial 3": "0",
+        "Total K+B": "19000",
+        "Pencairan Awal": "0",
+        "Pencairan Baru": "0",
+        "Tgl Pencairan": "-",
+        "Total Pencairan": "0",
+        "B Tambahan 1": "0",
+        "B Tambahan 2": "0",
+        "B Tambahan 3": "0"
+      }
+    };
+
+    function cariData() {
+      const kodeId = document.getElementById("kodeId").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const resultContainer = document.getElementById("result-container");
+
+      if (dataAnggota[kodeId] && dataAnggota[kodeId].Password === password) {
+        const anggota = dataAnggota[kodeId];
+        const filteredData = Object.keys(anggota)
+          .filter(key => key !== "Password")
+          .map(key => `<tr><td>${key}</td><td>: ${anggota[key]}</td></tr>`)
+          .join("");
+
+        resultContainer.innerHTML = `
+          <div class="center-text"><b>UNTUK MENGAKSES DETAIL INFORMASI KLIK MEMBER AREA</b></div>
+          <div class="center-button">
+          <a href="https://SAFF35.github.io/MEMBER" class="button">👉  MEMBER AREA</a></div>
+    
+          <div <b>KETERANGAN:</b></div>
+          <div <b>K: KOMISI</b></div>
+          <div <b>B: BONUS</b></div>
+          <div <b>G: GENERASI</b></div>
+          <table>${filteredData}</table>
+        `;
+        resultContainer.style.display = "block";
+        document.querySelector(".container").style.display = "none";
+      } else {
+        resultContainer.innerHTML = `<div class="not-found">DATA TIDAK DITEMUKAN ATAU PASSWORD SALAH</div>`;
+        resultContainer.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
